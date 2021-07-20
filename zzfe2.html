@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function TNode(val) {
+				this.val = val
+				this.left = null
+				this.right = null
+			}
+			let tree = new TNode('A')
+			let nodeB = new TNode('B')
+			let nodeC = new TNode('C')
+			let nodeD = new TNode('D')
+			let nodeE = new TNode('E')
+			let nodeF = new TNode('F')
+			let nodeG = new TNode('G')
+			let nodeH = new TNode('H')
+			let nodeI = new TNode('I')
+			let nodeJ = new TNode('J')
+
+			tree.left = nodeB
+			tree.right = nodeD
+
+			nodeB.left = nodeC
+			nodeB.right = nodeE
+
+			nodeD.left = nodeF
+			nodeD.right = nodeG
+
+			nodeE.left = nodeH
+			nodeE.right = nodeI
+
+			nodeG.left = nodeJ
+
+			function printTree(tree) {
+				let curren = 1
+				let stack = []
+				stack.push(tree)
+				let final = []
+				while (stack.length > 0) {
+					let text = curren.toString()
+					let count = stack.length
+					while (count > 0) {
+						//把数组的第一个元素从其中删除，并返回第一个元素的值。
+						let node = stack.shift()
+						text += node.val
+						// console.log(node.val)
+						//判断是否有左右
+						if (node.left) {
+							stack.push(node.left)
+						}
+						if (node.right) {
+							stack.push(node.right)
+						}
+						count -= 1
+					}
+					//把最终的结果放到final变量中
+					final.push(text)
+					curren += 1
+				}
+				return final.join("\n")
+			}
+			console.log(printTree(tree))
+		</script>
+	</body>
+</html>
